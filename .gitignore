@@ -16,3 +16,10 @@ rdm
 3rdparty/config.log
 3rdparty/leveldb/
 3rdparty/llvm/
+/src/rct/
+/bin/clangtest
+/bin/gr
+/bin/js
+/3rdparty/libcxx/
+/3rdparty/picojson/
+/3rdparty/rct/

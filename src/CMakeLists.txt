@@ -123,6 +123,9 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/rct/CMakeLists.txt)
   add_dependencies(rdm rct)
 endif()
 
+add_executable(js js.cpp JSParser.cpp)
+target_link_libraries(js ${rct_LIBS} ${system_LIBS} v8)
+
 if (GRTAGS_ENABLED MATCHES "1")
   include_directories(${PROJECT_SOURCE_DIR}/3rdparty/leveldb)
   add_executable(gr ${gr_SOURCES} ${rct_SOURCES})
