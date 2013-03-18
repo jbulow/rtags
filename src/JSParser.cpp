@@ -1,4 +1,5 @@
 #include "JSParser.h"
+#include <v8.h>
 
 JSParser::JSParser()
 {

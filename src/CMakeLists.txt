@@ -26,6 +26,7 @@ message("Using Clang version ${CLANG_VERSION}")
 add_definitions(-Wall)
 add_definitions("-DCLANG_INCLUDEPATH=\"${PROJECT_SOURCE_DIR}/3rdparty/clang_install/lib/clang/${CLANG_VERSION}/include/\"")
 add_definitions("-DCLANG_BIN=\"${PROJECT_SOURCE_DIR}/3rdparty/clang_install/bin/\"")
+add_definitions("-DESPRIMA_JS=\"${PROJECT_SOURCE_DIR}/3rdparty/esprima/esprima.js\"")
 add_definitions(-DOS_${CMAKE_SYSTEM_NAME})
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
@@ -118,13 +119,14 @@ target_link_libraries(clangtest ${clang_LIBS} ${CORESERVICES_LIBRARY} ${COREFOUN
 add_executable(rc rc.cpp ${rtags_shared_SOURCES} ${rct_SOURCES})
 target_link_libraries(rc ${rct_LIBS} ${system_LIBS})
 
+add_executable(js js.cpp JSParser.cpp)
+target_link_libraries(js ${rct_LIBS} ${system_LIBS} v8)
+
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/rct/CMakeLists.txt)
   add_dependencies(rc rct)
   add_dependencies(rdm rct)
+  add_dependencies(js rct)
 endif()
-
-add_executable(js js.cpp JSParser.cpp)
-target_link_libraries(js ${rct_LIBS} ${system_LIBS} v8)
 
 if (GRTAGS_ENABLED MATCHES "1")
   include_directories(${PROJECT_SOURCE_DIR}/3rdparty/leveldb)

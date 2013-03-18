@@ -40,6 +40,25 @@ ExternalProject_Add(
     GIT_REPOSITORY git@github.com:Andersbakken/rct.git
     GIT_TAG "origin/master"
 )
+ExternalProject_Add(
+    v8
+    SOURCE_DIR ./v8
+    CONFIGURE_COMMAND \$\(MAKE\) dependencies
+    BINARY_DIR ./v8
+    BUILD_COMMAND \$\(MAKE\) native
+    INSTALL_COMMAND ""
+    GIT_REPOSITORY git://github.com/v8/v8.git
+    GIT_TAG "origin/master"
+)
+ExternalProject_Add(
+    esprima
+    SOURCE_DIR ./esprima
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    GIT_REPOSITORY git://github.com/ariya/esprima.git
+    GIT_TAG "origin/master"
+)
 
 add_custom_target (
     leveldb_make
@@ -55,3 +74,4 @@ add_custom_target (
     WORKING_DIRECTORY ./leveldb
     DEPENDS leveldb
     )
+
